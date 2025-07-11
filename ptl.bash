@@ -137,17 +137,15 @@ else
  echo "❌ frappe_utils install failed" >&2
 fi
 
-if bench get-app https://github.com/Traqo/frappe-trip-execution.git; then
- echo "✅ execution installed successfully"
-else
- echo "❌ execution install failed" >&2
-fi
+bench get-app https://github.com/Traqo/frappe-trip-execution.git --skip-assets
+cd /home/frappe/frappe-bench/apps/execution
+git submodule update --init --recursive
 
-if bench get-app https://github.com/Traqo/frappe-ptl.git; then
- echo "✅ ptl installed successfully"
-else
- echo "❌ ptl install failed" >&2
-fi
+bench get-app https://github.com/Traqo/frappe-ptl.git --skip-assets
+cd /home/frappe/frappe-bench/apps/ptl
+git submodule update --init --recursive
+
+bench build
 
 bench --site test_site install-app ptl
 
