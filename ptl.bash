@@ -104,11 +104,6 @@ git config --global credential.helper "store --file=/home/frappe/.git-credential
 
 echo "---- 4.3 Initialise bench (dev settings)"
 
-#bench init "$BENCH_PATH" \
-#   --python "$(which python3)" \
-#   --skip-assets \
-#   --skip-redis-config-generation
-
 bench init "$BENCH_PATH" --python /usr/bin/python3.10 --frappe-branch=main --frappe-path=https://github.com/Traqo/frappe --skip-assets --skip-redis-config-generation
    
 cd "$BENCH_PATH"
