@@ -130,39 +130,32 @@ bench --site "${SITE_NAME}" install-app frappe
 bench get-app https://github.com/Traqo/frappe-utils.git
 
 
+# bench get-app https://github.com/Traqo/frappe-trip-execution.git --skip-assets
+# cd /home/frappe/frappe-bench/apps/execution
+# git submodule update --init --recursive
 
-if bench --site test_site install-app frappe_utils; then
- echo "✅ frappe_utils installed successfully"
-else
- echo "❌ frappe_utils install failed" >&2
-fi
+# bench get-app https://github.com/Traqo/frappe-ptl.git --skip-assets
+# cd /home/frappe/frappe-bench/apps/ptl
+# git submodule update --init --recursive
 
-bench get-app https://github.com/Traqo/frappe-trip-execution.git --skip-assets
-cd /home/frappe/frappe-bench/apps/execution
-git submodule update --init --recursive
+# bench build
 
-bench get-app https://github.com/Traqo/frappe-ptl.git --skip-assets
-cd /home/frappe/frappe-bench/apps/ptl
-git submodule update --init --recursive
+# bench --site test_site install-app ptl
 
-bench build
-
-bench --site test_site install-app ptl
-
-echo "---- 4.7 Done.  Start the stack with:  bench start"
+# echo "---- 4.7 Done.  Start the stack with:  bench start"
 
 
-ln -s /workspace/frappe-ptl /home/frappe/frappe-bench/apps/ptl
+# ln -s /workspace/frappe-ptl /home/frappe/frappe-bench/apps/ptl
 
-/home/frappe/frappe-bench/env/bin/python -m pip install -e /home/frappe/frappe-bench/apps/ptl --use-pep517 
+# /home/frappe/frappe-bench/env/bin/python -m pip install -e /home/frappe/frappe-bench/apps/ptl --use-pep517 
 
-cat << 'EOF' | tee /home/frappe/frappe-bench/sites/apps.txt
-frappe
-frappe_utils
-execution
-ptl
-EOF
+# cat << 'EOF' | tee /home/frappe/frappe-bench/sites/apps.txt
+# frappe
+# frappe_utils
+# execution
+# ptl
+# EOF
 
-bench --site test_site set-config allow_tests true
+# bench --site test_site set-config allow_tests true
 
 EOSU
